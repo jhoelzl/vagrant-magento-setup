@@ -10,7 +10,7 @@ Vagrant Configuration Setup for Magento
 * PHP-FPM
 * Nginx
 * n98-magerun
-* 
+
 ## Getting Started
 
 * Install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
