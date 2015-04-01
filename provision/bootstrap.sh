@@ -26,6 +26,8 @@ echo "Preparing MySQL"
 apt-get install debconf-utils -y > /dev/null
 debconf-set-selections <<< "mysql-server mysql-server/root_password password 1234"
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password 1234"
+sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+service mysql restart > /dev/null
 
 echo "Installing MySQL"
 apt-get install mysql-server -y > /dev/null
