@@ -27,6 +27,9 @@ apt-get install debconf-utils -y > /dev/null
 debconf-set-selections <<< "mysql-server mysql-server/root_password password 1234"
 debconf-set-selections <<< "mysql-server mysql-server/root_password_again password 1234"
 sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+
+echo "Preparing Magento Database and User"
+mysql -u root -p1234 -e "create database IF NOT EXISTS magento2; GRANT ALL PRIVILEGES ON magento.* TO magento_user@'%' IDENTIFIED BY 'magento_pass'"
 service mysql restart > /dev/null
 
 echo "Installing MySQL"
