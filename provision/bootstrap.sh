@@ -41,12 +41,43 @@ ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/
 rm -rf /etc/nginx/sites-available/default
 service nginx restart > /dev/null
 
-
 echo "Install n98-magerun"
 cd /vagrant/
 wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar
 chmod +x ./n98-magerun.phar
 sudo mv ./n98-magerun.phar /usr/local/bin/
 
+echo "Download latest Magento CE 1.9.x"
+cd /vagrant
+wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz
+tar zxvf magento-1.9.1.0.tar.gz
+rm -f xvf magento-1.9.1.0.tar.gz
+mv /vagrant/magento/* /vagrant/
+rm -f -r /vagrant/magento
+
+echo "Install Magento CE"
+php -f install.php -- \
+--license_agreement_accepted "yes" \
+--locale "de_DE" \
+--timezone "America/Phoenix" \
+--default_currency "USD" \
+--db_host "localhost" \
+--db_name "magento" \
+--db_user "magento_user" \
+--db_pass "magento_pass" \
+--db_prefix "" \
+--session_save "db" \
+--admin_frontname "system" \
+--url "http://127.0.0.1/" \
+--use_rewrites "yes" \
+--use_secure "no" \
+--secure_base_url "https://127.0.0.1/" \
+--use_secure_admin "yes" \
+--admin_firstname "Admin" \
+--admin_lastname "Admin" \
+--admin_email "admin.user@example.com" \
+--admin_username "admin" \
+--admin_password "123456789" \
+--encryption_key "BRuvuCrUd4aSWutr"
 
 echo "Finished provisioning."
