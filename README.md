@@ -21,3 +21,7 @@ Vagrant Configuration Setup for Magento
 * When you're done, run `vagrant halt`
 
 The first time you run this, Vagrant will download the bare Ubuntu box image. This can take a little while as the image is a few-hundred Mb. This is only performed once.
+
+## Login Credentials
+* SSH user / password / port: vagrant / vagrant / 2222
+* mySQL user / password / port: vagrant / vagrant / 3306
