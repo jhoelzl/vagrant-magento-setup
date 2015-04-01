@@ -27,3 +27,6 @@ The first time you run this, Vagrant will download the bare Ubuntu box image. Th
 * mySQL root user / password / port: root / 1234 / 3306
 * mySQL database: magento
 * mySQL magento user / password / port: magento_user / magento_pass / 3306
+
+## Customize
+When you change settings in the Vagrantfile, run `vagrant reload --provision` in order to update the settings 
