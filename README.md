@@ -3,7 +3,7 @@ Vagrant Configuration Setup for Magento
 
 ## Installs
 
-* Magento
+* Magento CE 1.9.1.0
 * MySQL
 * Git
 * PHP
