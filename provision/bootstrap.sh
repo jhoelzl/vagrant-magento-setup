@@ -49,7 +49,7 @@ sudo mv ./n98-magerun.phar /usr/local/bin/
 
 echo "Download latest Magento CE 1.9.x"
 cd /vagrant
-wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null
+wget -O - http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
 tar zxvf magento-1.9.1.0.tar.gz > /dev/null
 rm -f xvf magento-1.9.1.0.tar.gz
 mv /vagrant/magento/* /vagrant/
@@ -59,9 +59,9 @@ echo "Set correct Permissions"
 chown -R vagrant:vagrant /vagrant
 find . -type d -exec chmod 775 {} ;
 find . -type f -exec chmod 664 {} ;
-chmod -R 777 app/etc
-chmod -R 777 var
-chmod -R 777 media
+chmod -R 777 app/etc/*
+chmod -R 777 var/*
+chmod -R 777 media/*
 
 echo "Install Magento CE"
 php -f install.php -- \
@@ -88,5 +88,5 @@ php -f install.php -- \
 --admin_password "123456789" \
 --encryption_key "BRuvuCrUd4aSWutr"
 
-php -f shell/indexer.php reindexall
+# php -f shell/indexer.php reindexall
 echo "Finished provisioning."
