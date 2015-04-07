@@ -55,6 +55,14 @@ rm -f xvf magento-1.9.1.0.tar.gz
 mv /vagrant/magento/* /vagrant/
 rm -f -r /vagrant/magento
 
+echo "Set correct Permissions"
+chown -R vagrant:vagrant /vagrant
+find . -type d -exec chmod 775 {} ;
+find . -type f -exec chmod 664 {} ;
+chmod -R 777 app/etc
+chmod -R 777 var
+chmod -R 777 media
+
 echo "Install Magento CE"
 php -f install.php -- \
 --license_agreement_accepted yes \
@@ -66,8 +74,8 @@ php -f install.php -- \
 --db_user magento_user \
 --db_pass magento_pass \
 --db_prefix "" \
---session_save "db" \
---admin_frontname "system" \
+--session_save "files" \
+--admin_frontname "admin" \
 --url "http://127.0.0.1:4567/" \
 --use_rewrites "yes" \
 --use_secure "no" \
@@ -80,4 +88,5 @@ php -f install.php -- \
 --admin_password "123456789" \
 --encryption_key "BRuvuCrUd4aSWutr"
 
+php -f shell/indexer.php reindexall
 echo "Finished provisioning."
