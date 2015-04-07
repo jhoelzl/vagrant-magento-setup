@@ -29,7 +29,7 @@ debconf-set-selections <<< "mysql-server mysql-server/root_password_again passwo
 sed -i "s/bind-address.*/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
 echo "Preparing Magento Database and User"
-mysql -u root -p1234 -e "create database IF NOT EXISTS magento; GRANT ALL PRIVILEGES ON magento.* TO magento_user@'%' IDENTIFIED BY 'magento_pass'; GRANT ALL PRIVILEGES ON *.* TO root@'%' IDENTIFIED BY '1234'"
+mysql -u root -p1234 -e "create database IF NOT EXISTS magento; GRANT ALL PRIVILEGES ON magento.* TO magento_user@'%' IDENTIFIED BY 'magento_pass'; GRANT ALL PRIVILEGES ON *.* TO root@'%' IDENTIFIED BY '1234;FLUSH PRIVILEGES;'"
 service mysql restart > /dev/null
 
 echo "Installing MySQL"
@@ -49,29 +49,29 @@ sudo mv ./n98-magerun.phar /usr/local/bin/
 
 echo "Download latest Magento CE 1.9.x"
 cd /vagrant
-wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz
-tar zxvf magento-1.9.1.0.tar.gz
+wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null
+tar zxvf magento-1.9.1.0.tar.gz > /dev/null
 rm -f xvf magento-1.9.1.0.tar.gz
 mv /vagrant/magento/* /vagrant/
 rm -f -r /vagrant/magento
 
 echo "Install Magento CE"
 php -f install.php -- \
---license_agreement_accepted "yes" \
+--license_agreement_accepted yes \
 --locale "de_DE" \
 --timezone "America/Phoenix" \
---default_currency "USD" \
---db_host "localhost" \
---db_name "magento" \
---db_user "magento_user" \
---db_pass "magento_pass" \
+--default_currency EUR \
+--db_host localhost \
+--db_name magento \
+--db_user magento_user \
+--db_pass magento_pass \
 --db_prefix "" \
 --session_save "db" \
 --admin_frontname "system" \
---url "http://127.0.0.1/" \
+--url "http://127.0.0.1:4567/" \
 --use_rewrites "yes" \
 --use_secure "no" \
---secure_base_url "https://127.0.0.1/" \
+--secure_base_url "https://127.0.0.1:4567/" \
 --use_secure_admin "yes" \
 --admin_firstname "Admin" \
 --admin_lastname "Admin" \
