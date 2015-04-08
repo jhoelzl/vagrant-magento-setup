@@ -50,7 +50,6 @@ echo "Install Composer"
 cd /vagrant
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
-mkdir /vagrant/composer
 
 echo "Download Magento CE 1.9.x"
 cd /vagrant
