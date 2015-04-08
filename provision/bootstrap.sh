@@ -51,11 +51,15 @@ cd /vagrant
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
 
-echo "Download Magento CE 1.9.x"
-cd /vagrant
-wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
-tar zxvf magento-1.9.1.0.tar.gz > /dev/null
-rm -f xvf magento-1.9.1.0.tar.gz
+#echo "Download Magento CE 1.9.x"
+#cd /vagrant
+#wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
+#tar zxvf magento-1.9.1.0.tar.gz > /dev/null
+#rm -f xvf magento-1.9.1.0.tar.gz
+
+echo "Install Magento CE and useful modules through Composer"
+cd /vagrant/composer
+composer update
 
 echo "Set correct Permissions"
 cd /vagrant/magento
@@ -105,9 +109,5 @@ php -f install.php -- \
 echo "Adjust URLs and Reindex"
 mysql -u root -p1234 -e "UPDATE magento.core_config_data set value ='http://127.0.0.1:4567/' where path like '%base_url%';"
 php -f shell/indexer.php reindexall
-
-echo "Install useful Magento modules through Composer"
-cd /vagrant/composer
-composer update
 
 echo "Finished provisioning."
