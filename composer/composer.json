@@ -1,0 +1,32 @@
+{
+  "name": "jhoelzl/magento_vagrant1",
+  "minimum-stability":"stable",
+  "require":{
+    "magento-hackathon/magento-composer-installer": "*",
+    "kalenjordan/magerun-addons":"*",
+    "colinmollenhour/modman":"*",
+    "aoepeople/Aoe_Scheduler":"*",
+    "yireo/yireo_disablelog":"*",
+    "connect20/raveinfosys_deleteorder": "*",
+    "aschroder/smtp_pro": "*",
+    "connect20/zero1_cookiealert": "*",
+    "connect20/aromicon_google_universal_analytics": "*",
+    "connect20/shopgo_gtm": "*",
+    "firegento/magesetup": "*",
+    "gordonlesti/lesti_fpc":"*",
+    "avstudnitz/scopehint":"*",
+    "mage-eag/mage-enhanced-admin-grids":"*"
+  },
+    
+   "repositories":[    
+    {
+      "type":"composer",
+      "url":"http://packages.firegento.com"
+    }
+  ],
+  "extra":{
+    "magento-root-dir":"../magento",
+    "magento-deploystrategy":"copy",
+    "magento-force": "override"    
+  }
+}

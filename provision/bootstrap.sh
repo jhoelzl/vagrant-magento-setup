@@ -103,8 +103,12 @@ php -f install.php -- \
 --admin_password "m123456789" \
 --encryption_key "BRuvuCrUd4aSWutr"
 
-echo "Adjust URLs"
+echo "Adjust URLs and Reindex"
 mysql -u root -p1234 -e "UPDATE magento.core_config_data set value ='http://127.0.0.1:4567/' where path like '%base_url%';"
-
 php -f shell/indexer.php reindexall
+
+echo "Install useful Magento modules through Composer"
+cd /vagrant/composer
+composer update
+
 echo "Finished provisioning."
