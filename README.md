@@ -9,6 +9,7 @@ Vagrant Configuration Setup for Magento
 * PHP
 * PHP-FPM
 * Nginx
+* Composer
 * n98-magerun
 
 ## Getting Started
