@@ -41,21 +41,26 @@ rm -rf /etc/nginx/sites-available/default
 service nginx restart > /dev/null
 
 echo "Install n98-magerun"
-cd /vagrant/
+cd /vagrant/magento
 wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar > /dev/null 2>&1
 chmod +x ./n98-magerun.phar
 sudo mv ./n98-magerun.phar /usr/local/bin/
 
-echo "Download latest Magento CE 1.9.x"
+echo "Install Composer"
 cd /vagrant
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
+echo "Download Magento CE 1.9.x"
+cd /vagrant/magento
 wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
 tar zxvf magento-1.9.1.0.tar.gz > /dev/null
 rm -f xvf magento-1.9.1.0.tar.gz
-mv /vagrant/magento/* /vagrant/
-rm -f -r /vagrant/magento
+mv /vagrant/magento/magento/* /vagrant/magento/
+rm -f -r /vagrant/magento/magento/
 
 echo "Set correct Permissions"
-cd /vagrant
+cd /vagrant/magento
 chmod -R o+w media var
 chmod o+w app/etc
 chown -R vagrant:vagrant /vagrant
@@ -67,12 +72,14 @@ chmod -R 777 media/*
 chmod 550 mage
 
 echo "Remove obsolete Files"
+cd /vagrant/magento
 rm -f RELEASE_NOTES.txt
 rm -f LICENSE_AFL.txt
 rm -f LICENSE.html
 rm -f LICENSE.txt
 
 echo "Install Magento CE"
+cd /vagrant/magento
 php -f install.php -- \
 --license_agreement_accepted yes \
 --locale "de_DE" \
