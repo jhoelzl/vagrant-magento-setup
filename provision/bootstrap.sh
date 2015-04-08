@@ -50,14 +50,13 @@ echo "Install Composer"
 cd /vagrant
 curl -sS https://getcomposer.org/installer | php
 mv composer.phar /usr/local/bin/composer
+mkdir /vagrant/composer
 
 echo "Download Magento CE 1.9.x"
-cd /vagrant/magento
+cd /vagrant
 wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
 tar zxvf magento-1.9.1.0.tar.gz > /dev/null
 rm -f xvf magento-1.9.1.0.tar.gz
-mv /vagrant/magento/magento/* /vagrant/magento/
-rm -f -r /vagrant/magento/magento/
 
 echo "Set correct Permissions"
 cd /vagrant/magento
