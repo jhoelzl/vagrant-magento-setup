@@ -4,6 +4,7 @@ Vagrant Configuration Setup for Magento
 ## Installs
 
 * Magento CE 1.9.1.0
+* Some useful Magento modules, please look at [composer.json](composer/composer.json)
 * MySQL
 * Git
 * PHP
