@@ -3,7 +3,7 @@
   "minimum-stability":"stable",
   "require":{
     "magento-hackathon/magento-composer-installer": "*",
-    "kalenjordan/magerun-addons":"*",
+	"occitech/magento":"*",
     "colinmollenhour/modman":"*",
     "aoepeople/Aoe_Scheduler":"*",
     "yireo/yireo_disablelog":"*",
@@ -15,7 +15,10 @@
     "firegento/magesetup": "*",
     "gordonlesti/lesti_fpc":"*",
     "avstudnitz/scopehint":"*",
-    "mage-eag/mage-enhanced-admin-grids":"*"
+	"zookal/magento-mock":"*",
+	"mkleine/magento-language-routes":"dev-master",
+	"schumacherfm/markdown":"*",
+	"firegento/flexcms":"dev-master"
   },
     
    "repositories":[    
