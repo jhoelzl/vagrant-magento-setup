@@ -35,7 +35,7 @@ mysql -u root -p1234 -e "create database IF NOT EXISTS magento; GRANT ALL PRIVIL
 service mysql restart > /dev/null
 
 echo "Configuring Nginx"
-cp /var/www/provision/config/nginx_vhost /etc/nginx/sites-available/nginx_vhost > /dev/null
+cp /var/www/provision/nginx_vhost /etc/nginx/sites-available/nginx_vhost > /dev/null
 ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/
 rm -rf /etc/nginx/sites-available/default
 service nginx restart > /dev/null
