@@ -3,7 +3,7 @@
   "minimum-stability":"dev",
   "require":{
     "magento-hackathon/magento-composer-installer": "*",
-	"jhoelzl/magento":"dev-master",
+    "jhoelzl/magento":"dev-master",
     "colinmollenhour/modman":"*",
     "aoepeople/Aoe_Scheduler":"*",
     "yireo/yireo_disablelog":"*",
@@ -15,10 +15,10 @@
     "firegento/magesetup": "*",
     "gordonlesti/lesti_fpc":"*",
     "avstudnitz/scopehint":"*",
-	"zookal/magento-mock":"*",
-	"mkleine/magento-language-routes":"dev-master",
-	"schumacherfm/markdown":"*",
-	"firegento/flexcms":"dev-master"
+    "zookal/magento-mock":"*",
+    "mkleine/magento-language-routes":"dev-master",
+    "schumacherfm/markdown":"*",
+    "firegento/flexcms":"dev-master"
   },
     
    "repositories":[    
@@ -26,9 +26,9 @@
       "type":"composer",
       "url":"http://packages.firegento.com"
     },
-	{
-            "url": "https://github.com/jhoelzl/magento",
-            "type": "git"
+    {
+      "url": "https://github.com/jhoelzl/magento",
+      "type": "git"
      }
   ],
   "extra":{
