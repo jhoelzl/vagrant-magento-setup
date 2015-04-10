@@ -3,7 +3,7 @@
   "minimum-stability":"dev",
   "require":{
     "magento-hackathon/magento-composer-installer": "*",
-    "jhoelzl/magento":"dev-master",
+    "jhoelzl/magento":"*",
     "colinmollenhour/modman":"*",
     "aoepeople/Aoe_Scheduler":"*",
     "yireo/yireo_disablelog":"*",
@@ -29,7 +29,7 @@
     {
       "url": "https://github.com/jhoelzl/magento",
       "type": "git"
-     }
+    }
   ],
   "extra":{
     "magento-root-dir":"../magento",
