@@ -58,6 +58,7 @@ mv composer.phar /usr/local/bin/composer
 #rm -f xvf magento-1.9.1.0.tar.gz
 
 echo "Install Magento CE and useful modules through Composer"
+mkdir -p /vagrant/magento
 cd /vagrant/composer
 composer update
 
