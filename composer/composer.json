@@ -1,9 +1,9 @@
 {
   "name": "jhoelzl/magento_vagrant1",
-  "minimum-stability":"stable",
+  "minimum-stability":"dev",
   "require":{
     "magento-hackathon/magento-composer-installer": "*",
-	"occitech/magento":"*",
+	"jhoelzl/magento":"dev-master",
     "colinmollenhour/modman":"*",
     "aoepeople/Aoe_Scheduler":"*",
     "yireo/yireo_disablelog":"*",
@@ -25,11 +25,15 @@
     {
       "type":"composer",
       "url":"http://packages.firegento.com"
-    }
+    },
+	{
+            "url": "https://github.com/jhoelzl/magento",
+            "type": "git"
+     }
   ],
   "extra":{
     "magento-root-dir":"../magento",
-    "magento-deploystrategy":"copy",
+    "magento-deploystrategy":"symlink",
     "magento-force": "override"    
   }
 }
