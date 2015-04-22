@@ -108,6 +108,12 @@ echo "Install useful Magento modules through Composer"
 cd /vagrant/composer
 composer update
 
+echo "Install generate-modman"
+cd /vagrant/magento
+curl -sS https://raw.githubusercontent.com/mhauri/generate-modman/master/generate-modman > generate-modman
+sudo mv generate-modman /usr/local/bin
+chmod 755 /usr/local/bin/generate-modman
+
 echo "Clear Cache and Reindex"
 cd /vagrant/magento
 n98-magerun.phar cache:enable
