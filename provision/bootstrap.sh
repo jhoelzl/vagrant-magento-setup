@@ -14,7 +14,6 @@ apt-get install python-software-properties build-essential -y > /dev/null
 add-apt-repository ppa:ondrej/php5 -y > /dev/null
 apt-get update > /dev/null
 
-
 echo "Installing PHP"
 apt-get install php5-common php5-dev php5-cli php5-fpm -y > /dev/null
  
@@ -40,27 +39,11 @@ ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/
 rm -rf /etc/nginx/sites-available/default
 service nginx restart > /dev/null
 
-echo "Install n98-magerun"
-cd /vagrant/magento
-wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar > /dev/null 2>&1
-chmod +x ./n98-magerun.phar
-sudo mv ./n98-magerun.phar /usr/local/bin/
-
-echo "Install Composer"
+echo "Download Magento CE 1.9.x"
 cd /vagrant
-curl -sS https://getcomposer.org/installer | php
-mv composer.phar /usr/local/bin/composer
-
-#echo "Download Magento CE 1.9.x"
-#cd /vagrant
-#wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
-#tar zxvf magento-1.9.1.0.tar.gz > /dev/null
-#rm -f xvf magento-1.9.1.0.tar.gz
-
-echo "Install Magento CE and useful modules through Composer"
-mkdir -p /vagrant/magento
-cd /vagrant/composer
-composer update
+wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
+tar zxvf magento-1.9.1.0.tar.gz > /dev/null
+rm -f xvf magento-1.9.1.0.tar.gz
 
 echo "Set correct Permissions"
 cd /vagrant/magento
@@ -74,12 +57,13 @@ chmod -R 777 var/*
 chmod -R 777 media/*
 chmod 550 mage
 
-echo "Remove obsolete Files"
+echo "Remove obsolete Magento Files"
 cd /vagrant/magento
 rm -f RELEASE_NOTES.txt
 rm -f LICENSE_AFL.txt
 rm -f LICENSE.html
 rm -f LICENSE.txt
+rm -f favicon.ico
 
 echo "Install Magento CE"
 cd /vagrant/magento
@@ -104,11 +88,31 @@ php -f install.php -- \
 --admin_lastname "Admin" \
 --admin_email "admin.user@example.com" \
 --admin_username "admin" \
---admin_password "m123456789" \
---encryption_key "BRuvuCrUd4aSWutr"
+--admin_password "m123456789"
 
-echo "Adjust URLs and Reindex"
+echo "Adjust Base URLs"
 mysql -u root -p1234 -e "UPDATE magento.core_config_data set value ='http://127.0.0.1:4567/' where path like '%base_url%';"
-php -f shell/indexer.php reindexall
+
+echo "Install n98-magerun"
+cd /vagrant/magento
+wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar > /dev/null 2>&1
+chmod +x ./n98-magerun.phar
+sudo mv ./n98-magerun.phar /usr/local/bin/
+
+echo "Install Composer"
+cd /vagrant
+curl -sS https://getcomposer.org/installer | php
+mv composer.phar /usr/local/bin/composer
+
+echo "Install useful Magento modules through Composer"
+cd /vagrant/composer
+composer update
+
+echo "Clear Cache and Reindex"
+cd /vagrant/magento
+n98-magerun.phar cache:enable
+n98-magerun.phar cache:flush
+n98-magerun.phar cache:clean
+n98-magerun.phar index:reindex:all
 
 echo "Finished provisioning."
