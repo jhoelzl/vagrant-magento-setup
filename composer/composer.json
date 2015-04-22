@@ -3,7 +3,6 @@
   "minimum-stability":"dev",
   "require":{
     "magento-hackathon/magento-composer-installer": "*",
-    "jhoelzl/magento":"*",
     "colinmollenhour/modman":"*",
     "aoepeople/Aoe_Scheduler":"*",
     "yireo/yireo_disablelog":"*",
@@ -25,10 +24,6 @@
     {
       "type":"composer",
       "url":"http://packages.firegento.com"
-    },
-    {
-      "url": "https://github.com/jhoelzl/magento",
-      "type": "git"
     }
   ],
   "extra":{
