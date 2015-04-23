@@ -39,11 +39,25 @@ ln -s /etc/nginx/sites-available/nginx_vhost /etc/nginx/sites-enabled/
 rm -rf /etc/nginx/sites-available/default
 service nginx restart > /dev/null
 
-echo "Download Magento CE 1.9.x"
+#echo "Download Magento CE 1.9.x"
+#cd /vagrant
+#wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
+#tar zxvf magento-1.9.1.0.tar.gz > /dev/null
+#rm -f xvf magento-1.9.1.0.tar.gz
+
+echo "Checkout Magento CE 1.9.1.x with latest Patches"
 cd /vagrant
-wget http://www.magentocommerce.com/downloads/assets/1.9.1.0/magento-1.9.1.0.tar.gz > /dev/null 2>&1
-tar zxvf magento-1.9.1.0.tar.gz > /dev/null
-rm -f xvf magento-1.9.1.0.tar.gz
+git clone --depth=1 https://github.com/mageprofis/magento.git magento
+rm -rf /vagrant/magento/.git
+
+echo "Remove obsolete Magento Files"
+cd /vagrant/magento
+rm -f RELEASE_NOTES.txt
+rm -f LICENSE_AFL.txt
+rm -f LICENSE.html
+rm -f LICENSE.txt
+rm -f favicon.ico
+rm -r PATCH_*
 
 echo "Set correct Permissions"
 cd /vagrant/magento
@@ -56,14 +70,6 @@ chmod -R 777 app/etc/*
 chmod -R 777 var/*
 chmod -R 777 media/*
 chmod 550 mage
-
-echo "Remove obsolete Magento Files"
-cd /vagrant/magento
-rm -f RELEASE_NOTES.txt
-rm -f LICENSE_AFL.txt
-rm -f LICENSE.html
-rm -f LICENSE.txt
-rm -f favicon.ico
 
 echo "Install Magento CE"
 cd /vagrant/magento
