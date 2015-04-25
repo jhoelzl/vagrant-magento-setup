@@ -1,7 +1,8 @@
 Vagrant.configure(2) do |config|
 
 	config.vm.box = "hashicorp/precise64"
-
+	
+	config.vm.hostname = "magento.local"
   	config.vm.network :forwarded_port, host: 4567, guest: 80, auto_correct: true
   	config.vm.network :forwarded_port, guest: 3306, host: 3306, auto_correct: true
 
