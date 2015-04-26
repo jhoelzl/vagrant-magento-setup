@@ -73,28 +73,7 @@ chmod 550 mage
 
 echo "Install Magento CE"
 cd /vagrant/magento
-php -f install.php -- \
---license_agreement_accepted yes \
---locale "de_DE" \
---timezone "America/Phoenix" \
---default_currency EUR \
---db_host "127.0.0.1" \
---db_name magento \
---db_user magento_user \
---db_pass magento_pass \
---db_prefix "" \
---session_save "files" \
---admin_frontname "admin" \
---url "http://localhost/" \
---use_rewrites "yes" \
---use_secure "no" \
---secure_base_url "http://localhost/" \
---use_secure_admin "yes" \
---admin_firstname "Admin" \
---admin_lastname "Admin" \
---admin_email "admin.user@example.com" \
---admin_username "admin" \
---admin_password "m123456789"
+php -f install.php -- --license_agreement_accepted yes --locale "de_DE" --timezone "America/Phoenix" --default_currency EUR --db_host "127.0.0.1" --db_name magento --db_user magento_user --db_pass magento_pass --db_prefix "" --session_save "files" --admin_frontname "admin" --url "http://localhost/" --use_rewrites "yes" --use_secure "no" --secure_base_url "http://localhost/" --use_secure_admin "yes" --admin_firstname "Admin" --admin_lastname "Admin" --admin_email "admin.user@example.com" --admin_username "admin" --admin_password "m123456789"
 
 echo "Adjust Base URLs"
 mysql -u root -p1234 -e "UPDATE magento.core_config_data set value ='http://127.0.0.1:4567/' where path like '%base_url%';"
