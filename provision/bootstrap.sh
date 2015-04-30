@@ -78,11 +78,14 @@ php -f install.php -- --license_agreement_accepted yes --locale "de_DE" --timezo
 echo "Adjust Base URLs"
 mysql -u root -p1234 -e "UPDATE magento.core_config_data set value ='http://127.0.0.1:4567/' where path like '%base_url%';"
 
-echo "Install n98-magerun"
+echo "Install n98-magerun and its bash-completion"
 cd /vagrant/magento
-wget https://raw.github.com/netz98/n98-magerun/master/n98-magerun.phar > /dev/null 2>&1
+wget "https://raw.githubusercontent.com/netz98/n98-magerun/master/n98-magerun.phar" > /dev/null 2>&1
+wget "https://raw.githubusercontent.com/netz98/n98-magerun/master/autocompletion/bash/bash_complete" -O "magerun-bash-completion" > /dev/null 2>&1
 chmod +x ./n98-magerun.phar
-sudo mv ./n98-magerun.phar /usr/local/bin/
+mv ./n98-magerun.phar /usr/local/bin/
+mv ./magerun-bash-completion /etc/bash_completion.d/n98-magerun.phar
+n98-magerun.phar dev:symlinks --on --global
 
 echo "Install Composer"
 cd /vagrant
@@ -93,10 +96,17 @@ echo "Install useful Magento modules through Composer"
 cd /vagrant/composer
 composer update
 
+echo "Install modman and its bash-completion"
+wget "https://raw.githubusercontent.com/colinmollenhour/modman/master/modman" > /dev/null 2>&1
+wget "https://raw.githubusercontent.com/colinmollenhour/modman/master/bash_completion" -O "modman-bash-completion" > /dev/null 2>&1
+chmod +x ./modman
+mv ./modman /usr/local/bin/
+mv ./modman-bash-completion /etc/bash_completion.d/modman
+
 echo "Install generate-modman"
 cd /vagrant/magento
 curl -sS https://raw.githubusercontent.com/mhauri/generate-modman/master/generate-modman > generate-modman
-sudo mv generate-modman /usr/local/bin
+mv generate-modman /usr/local/bin
 chmod 755 /usr/local/bin/generate-modman
 
 echo "Clear Cache and Reindex"
