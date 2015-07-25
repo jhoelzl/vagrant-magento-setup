@@ -3,7 +3,7 @@ Vagrant Configuration Setup for Magento
 
 ## Installs
 
-* Magento CE 1.9.1.0 with patches (from https://github.com/mageprofis/magento)
+* Magento CE 1.9.2.0 with patches (from https://github.com/mageprofis/magento)
 * Some useful Magento modules, please look at [composer.json](composer/composer.json)
 * MySQL
 * Git
