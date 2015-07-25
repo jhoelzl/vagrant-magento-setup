@@ -45,7 +45,7 @@ service nginx restart > /dev/null
 #tar zxvf magento-1.9.1.0.tar.gz > /dev/null
 #rm -f xvf magento-1.9.1.0.tar.gz
 
-echo "Checkout Magento CE 1.9.1.x with latest Patches"
+echo "Checkout Magento CE 1.9.2.x with latest Patches"
 cd /vagrant
 git clone --depth=1 https://github.com/mageprofis/magento.git magento
 rm -rf /vagrant/magento/.git
