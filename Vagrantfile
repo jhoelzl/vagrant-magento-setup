@@ -9,7 +9,7 @@ Vagrant.configure(2) do |config|
   	config.vm.synced_folder "./", "/var/www", create: true, group: "www-data", owner: "www-data"
 
   	config.vm.provider "virtualbox" do |vb|
-		vb.name = "Magento 1.9.1.0 Test Environment"
+		vb.name = "Magento 1.9.2.0 Test Environment"
    	end
  
  	config.vm.provision "shell" do |s|
